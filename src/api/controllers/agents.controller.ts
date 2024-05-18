@@ -21,34 +21,73 @@ export const getAgent = async (req: Request, res: Response) => {
 }
 
 export const createAgent = async (req: Request, res: Response) => {
-
     try {
-        const { name, description, q, e, c, x, avatar, role, dateOngame } = req.body;
-        const hability = {
-            q : q,
-            e : e,
-            c : c,
-            x : x,
-        };
-        const agent = new Agents({ name, description, hability, avatar, role, dateOngame });
-        await agent.save();
-        res.status(201).json(agent);
-      } catch (error) {
-        res.status(500).send("Error al crear el usuario");
-      }
-    };
+        const {
+            name,
+            description,
+            habilidad1,
+            habilidad2,
+            habilidad3,
+            habilidad4,
+            avatar,
+            rol,
+            dateOngame
+        } = req.body;
+
+        // Crea el nuevo agente con los datos recibidos en el request body
+        const nuevoAgente = new Agents({
+            name,
+            description,
+            hability: {
+                habilidad1,
+                habilidad2,
+                habilidad3,
+                habilidad4
+            },
+            avatar,
+            rol,
+            dateOngame
+        });
+        
+        // Guarda el nuevo agente en la base de datos
+        await nuevoAgente.save();
+
+        // Envía una respuesta exitosa con el nuevo agente creado
+        res.status(201).json(nuevoAgente);
+    } catch (error) {
+        console.error(error);
+        // Envía una respuesta de error en caso de fallo
+        res.status(500).send("Error al crear el agente");
+    }
+};
 
 export const updateAgent = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const { name, description, q, e, c, x, avatar, role, dateOngame } = req.body;
-        const hability = {
-            q : q,
-            e : e,
-            c : c,
-            x : x,
-        };
-        await Agents.findByIdAndUpdate(id, { name, description, hability, avatar, role, dateOngame });
+        const {
+            name,
+            description,
+            habilidad1,
+            habilidad2,
+            habilidad3,
+            habilidad4,
+            avatar,
+            rol,
+            dateOngame
+        } = req.body;
+        await Agents.findByIdAndUpdate(id, {
+            name,
+            description,
+            hability: {
+                habilidad1,
+                habilidad2,
+                habilidad3,
+                habilidad4
+            },
+            avatar,
+            rol,
+            dateOngame
+        });
         res.status(204).send();
     } catch (error) {
         return res.status(404).send("Usuario no encontrada");

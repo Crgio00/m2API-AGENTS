@@ -15,3 +15,5 @@ import { verifyJWT } from "../controllers/auth.controller";
  router.post("/", verifyJWT, createAgent)
  router.put("/:id", verifyJWT, updateAgent)
  router.get("/:id", verifyJWT, deleteAgent)
+
+ export default router;

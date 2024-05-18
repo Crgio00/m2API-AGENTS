@@ -24,11 +24,16 @@ export const apiLogin = async (req: Request, res: Response) => {
   if (!user || !(await user.comparePassword(password))) {
     return res.status(401).json({ message: "Invalid credentials" });
   }
+  
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
     expiresIn: "30d",
   });
+  const AuthSession = {
+    token: token,
+    user: user
+};
   res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
-  res.status(200).send("ok");
+  res.status(200).send(AuthSession)
 };
 
 export const apiLogout = (req: Request, res: Response) => {
@@ -44,6 +49,7 @@ export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
     next();
+    res.status(200).json(decoded);
   } catch (error) {
     res.status(403).json({ message: "Invalid token" });
   }

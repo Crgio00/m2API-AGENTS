@@ -1,48 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body>
-
-    <header class="bg-white">
-        <%- include('./layouts/header'); %>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API de Agentes de Valorant</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 py-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-3xl font-bold">API de Agentes de Valorant</h1>
+        <nav>
+          <a href="#features" class="text-gray-400 hover:text-white mx-2"
+            >Características</a
+          >
+          <a href="#agents" class="text-gray-400 hover:text-white mx-2"
+            >Agentes</a
+          >
+          <a href="#cta" class="text-gray-400 hover:text-white mx-2"
+            >Registro</a
+          >
+        </nav>
+      </div>
     </header>
-    <main>
-        <section class="bg-gray-900 text-white">
-            <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
-                <div class="mx-auto max-w-3xl text-center">
-                    <h1
-                        class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
-                        Understand User Flow.
-
-                        <span class="sm:block"> Increase Conversion. </span>
-                    </h1>
-
-                    <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo tenetur fuga ducimus
-                        numquam ea!
-                    </p>
-
-                    <div class="mt-8 flex flex-wrap justify-center gap-4">
-
-                        <a class="block w-full rounded border border-blue-600 px-12 py-3 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring active:bg-blue-500 sm:w-auto"
-                            href="#">
-                            Encuestas
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <%- include('./layouts/footer'); %>
-    </footer>
-</body>
-
+    <section id="agents" class="container mx-auto px-4 py-16">
+      <h3 class="text-3xl font-bold text-center mb-8">DEMO Datos de Agentes</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Example card -->
+        <div class="bg-gray-800 p-6 rounded-lg">
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Agente 1"
+            class="w-full h-48 object-cover mb-4 rounded-lg"
+          />
+          <h4 class="text-2xl font-bold mb-2">Agente 1</h4>
+          <p class="text-gray-400">
+            Descripción del agente 1. Información sobre habilidades, roles, etc.
+          </p>
+        </div>
+        <!-- Loop for generating 20 cards -->
+        <script>
+          for (let i = 2; i <= 20; i++) {
+            document.write(`
+                        <div class="bg-gray-800 p-6 rounded-lg">
+                            <img src="https://via.placeholder.com/150" alt="Agente ${i}" class="w-full h-48 object-cover mb-4 rounded-lg">
+                            <h4 class="text-2xl font-bold mb-2">Agente ${i}</h4>
+                            <p class="text-gray-400">Descripción del agente ${i}. Información sobre habilidades, roles, etc.</p>
+                        </div>
+                    `);
+          }
+        </script>
+      </div>
+    </section>
+  </body>
 </html>
